@@ -1,0 +1,318 @@
+[
+  {
+    "prompt": "What is Python?",
+    "response": "Python is a high-level, dynamically typed programming language with readable syntax. It supports procedural and object-oriented programming. The course material highlights its use in data science because libraries such as NumPy and Pandas support numerical work and data manipulation, while Matplotlib and Seaborn support visualization."
+  },
+  {
+    "prompt": "Teach me Python",
+    "response": "Python is a readable, high-level programming language used for general programming and data science. Here are the basics:\n\n1. Store a value in a variable: name = \"Ada\"\n2. Use common types: age = 20, price = 3.5, numbers = [1, 2, 3]\n3. Make a decision: if age >= 18: print(\"adult\")\n4. Repeat work: for number in numbers: print(number)\n5. Reuse code with a function: def square(x): return x * x\n\nPython uses indentation to group statements. It is dynamically typed, so you do not normally declare a variable's type. Lists can be changed; tuples are fixed sequences; dictionaries map keys to values. Start by running small examples and changing them to see what happens."
+  },
+  {
+    "prompt": "Teach me Python basics",
+    "response": "Python is a readable, high-level programming language. Start with variables (name = \"Ada\"), values such as integers, strings and lists, and print() to display results. Use if/else to choose what happens, for to repeat over a sequence, and def to define a reusable function. Indentation marks the statements inside a block. For example:\n\nfor number in [1, 2, 3]:\n    print(number * number)\n\nThis loop prints the square of each number. Try changing the list or the expression."
+  },
+  {
+    "prompt": "Why is Python used in data science?",
+    "response": "Python is popular in data science because it is readable and has a broad library ecosystem. NumPy and Pandas help with numerical computation and data manipulation; Matplotlib and Seaborn help visualize data; and Scikit-learn, TensorFlow, and PyTorch support machine learning."
+  },
+  {
+    "prompt": "What does dynamically typed mean in Python?",
+    "response": "In Python, variable types are determined from the values at runtime, so you generally do not write a type declaration for every variable. A name can later refer to a value of another type."
+  },
+  {
+    "prompt": "What are the data types in Python?",
+    "response": "Python Tutorial 1: Data Types in Python\n\nLet's learn Python from the fundamentals, gradually moving toward advanced topics\nsuch as machine learning, deep learning, and generative AI. The examples below use\npractical data-processing and data-science scenarios.\n\n1. What are data types?\n\nA data type describes the kind of value a variable refers to and the operations\nthat are appropriate for that value. Python determines types at runtime; you do\nnot normally declare a variable's type.\n\nname = \"Ilaaf\"\nage = 29\nsalary = 31000.50\nis_data_scientist = True\n\nHere, name is str, age is int, salary is float, and is_data_scientist is bool.\nUse type() to inspect a value:\n\nname = \"Ilaaf\"\nprint(type(name))  # <class 'str'>\n\n2. Built-in data types\n\nNumeric: int, float, complex\nText: str\nBoolean: bool\nSequences: list, tuple, range\nMapping: dict\nSets: set, frozenset\nBinary: bytes, bytearray, memoryview\nSpecial value: None, whose type is NoneType\n\nA. Numeric types\n\nint stores whole numbers, including negative numbers:\n\nage = 29\nnumber_of_employees = 500\ntemperature = -10\nprint(type(age))  # <class 'int'>\n\nfloat stores numbers with a fractional part. Data science uses floats for\nmeasurements, probabilities, model predictions, and statistical calculations:\n\nsalary = 31000.50\naccuracy = 0.957\nprint(type(salary))  # <class 'float'>\n\ncomplex stores a real and an imaginary component:\n\nx = 5 + 3j\nprint(x)        # (5+3j)\nprint(type(x))  # <class 'complex'>\nprint(x.real)   # 5.0\nprint(x.imag)   # 3.0\n\nB. Text: str\n\nstr represents text. Strings may use single quotes, double quotes, or triple\nquotes:\n\nname = \"Ilaaf\"\nrole = 'Data Scientist'\nmessage = \"\"\"Welcome to Python\"\"\"\nprint(type(name))  # <class 'str'>\n\nStrings are immutable: you cannot replace an individual character in place.\nFor example, name[0] = \"A\" raises TypeError. Create a new string instead:\n\nname = \"A\" + name[1:]\n\nC. Boolean: bool\n\nbool has two values, True and False. Booleans are often used in conditions:\n\naccuracy = 95\nif accuracy > 90:\n    print(\"Model performance is good\")\nelse:\n    print(\"Model needs improvement\")\n\nD. Sequence types\n\nSequences keep values in an order.\n\nlist is ordered and mutable (changeable); it allows duplicate values and can\ncontain values of different types:\n\nskills = [\"Python\", \"SQL\", \"Machine Learning\"]\nskills.append(\"Deep Learning\")\nprint(skills)\n\ntuple is ordered and immutable (not changeable):\n\ncoordinates = (10, 20, 30)\n\nBoth lists and tuples support indexing starting at zero. Assigning to\ncoordinates[0] raises TypeError, while assigning to a list item is allowed.\n\nrange represents a sequence of integers, commonly used in loops. The stop\nvalue is excluded:\n\nnumbers = range(1, 6)\nprint(list(numbers))  # [1, 2, 3, 4, 5]\n\nE. Mapping: dict\n\ndict stores key-value pairs. Keys are unique; dictionaries are mutable and\npreserve insertion order:\n\nemployee = {\n    \"name\": \"Ilaaf\",\n    \"age\": 29,\n    \"company\": \"HTC\",\n    \"role\": \"Data Scientist\",\n}\nprint(employee[\"name\"])  # Ilaaf\nemployee[\"company\"] = \"Google\"\n\nDictionaries are useful for structured records and API data, for example:\n\ncustomer = {\n    \"customer_id\": 101,\n    \"purchase_amount\": 5000.0,\n    \"is_fraud\": False,\n}\n\nF. Set types\n\nset is a mutable, unordered collection of unique, hashable values. It removes\nduplicates and does not support positional indexing:\n\nnumbers = {10, 20, 30, 10, 20}\nprint(numbers)  # {10, 20, 30} (display order may vary)\n\nfrozenset is an immutable set; its elements cannot be added or removed:\n\nfixed_numbers = frozenset([10, 20, 30])\n\nG. Binary types\n\nBinary types represent byte data, useful when working with files, networking,\nand multimedia:\n\ndata = bytes([65, 66, 67])\nprint(data)  # b'ABC'\n\nbytes is immutable, bytearray is mutable, and memoryview provides access to\nbinary data without copying it.\n\nH. NoneType\n\nNone represents the absence of a value. Its type is NoneType:\n\nresult = None\nprint(result)       # None\nprint(type(result)) # <class 'NoneType'>\n\n3. List vs tuple vs set vs dictionary\n\nlist:       [value, ...]       ordered, mutable, allows duplicates\ntuple:      (value, ...)       ordered, immutable, allows duplicates\nset:        {value, ...}       unordered, mutable, unique elements\ndictionary: {key: value, ...}  insertion-ordered, mutable, unique keys\n\nRemember: list is a changeable sequence; tuple is a fixed sequence; set keeps\nunique elements; dictionary maps keys to values.\n\n4. Checking types dynamically\n\ntype() returns an object's type. isinstance() checks whether it has a given type:\n\nx = 100\nprint(type(x))              # <class 'int'>\nprint(isinstance(x, int))   # True\nprint(isinstance(x, str))   # False\n\n5. Practice\n\nFor these assignments, identify each value's type:\n\na = 100\nb = 10.5\nc = \"Python\"\nd = True\ne = [10, 20, 30]\nf = (10, 20, 30)\ng = {10, 20, 30}\nh = {\"name\": \"Ilaaf\"}\n\nWhat happens here?\n\nvalues = [10, 20, 30]\nvalues[0] = 100  # Works: lists are mutable\n\nfixed_values = (10, 20, 30)\nfixed_values[0] = 100  # Raises TypeError: tuples are immutable\n\n6. What to learn next\n\nAfter data types, study mutability, indexing and slicing, operators,\nconditions, loops, collection methods, list comprehensions, functions,\nobject-oriented programming, exception handling, and then libraries such as\nNumPy and Pandas for data science."
+  },
+  {
+    "prompt": "Teach me Python. What are the data types in Python?",
+    "response": "Python Tutorial 1: Data Types in Python\n\nLet's learn Python from the fundamentals, gradually moving toward advanced topics\nsuch as machine learning, deep learning, and generative AI. The examples below use\npractical data-processing and data-science scenarios.\n\n1. What are data types?\n\nA data type describes the kind of value a variable refers to and the operations\nthat are appropriate for that value. Python determines types at runtime; you do\nnot normally declare a variable's type.\n\nname = \"Ilaaf\"\nage = 29\nsalary = 31000.50\nis_data_scientist = True\n\nHere, name is str, age is int, salary is float, and is_data_scientist is bool.\nUse type() to inspect a value:\n\nname = \"Ilaaf\"\nprint(type(name))  # <class 'str'>\n\n2. Built-in data types\n\nNumeric: int, float, complex\nText: str\nBoolean: bool\nSequences: list, tuple, range\nMapping: dict\nSets: set, frozenset\nBinary: bytes, bytearray, memoryview\nSpecial value: None, whose type is NoneType\n\nA. Numeric types\n\nint stores whole numbers, including negative numbers:\n\nage = 29\nnumber_of_employees = 500\ntemperature = -10\nprint(type(age))  # <class 'int'>\n\nfloat stores numbers with a fractional part. Data science uses floats for\nmeasurements, probabilities, model predictions, and statistical calculations:\n\nsalary = 31000.50\naccuracy = 0.957\nprint(type(salary))  # <class 'float'>\n\ncomplex stores a real and an imaginary component:\n\nx = 5 + 3j\nprint(x)        # (5+3j)\nprint(type(x))  # <class 'complex'>\nprint(x.real)   # 5.0\nprint(x.imag)   # 3.0\n\nB. Text: str\n\nstr represents text. Strings may use single quotes, double quotes, or triple\nquotes:\n\nname = \"Ilaaf\"\nrole = 'Data Scientist'\nmessage = \"\"\"Welcome to Python\"\"\"\nprint(type(name))  # <class 'str'>\n\nStrings are immutable: you cannot replace an individual character in place.\nFor example, name[0] = \"A\" raises TypeError. Create a new string instead:\n\nname = \"A\" + name[1:]\n\nC. Boolean: bool\n\nbool has two values, True and False. Booleans are often used in conditions:\n\naccuracy = 95\nif accuracy > 90:\n    print(\"Model performance is good\")\nelse:\n    print(\"Model needs improvement\")\n\nD. Sequence types\n\nSequences keep values in an order.\n\nlist is ordered and mutable (changeable); it allows duplicate values and can\ncontain values of different types:\n\nskills = [\"Python\", \"SQL\", \"Machine Learning\"]\nskills.append(\"Deep Learning\")\nprint(skills)\n\ntuple is ordered and immutable (not changeable):\n\ncoordinates = (10, 20, 30)\n\nBoth lists and tuples support indexing starting at zero. Assigning to\ncoordinates[0] raises TypeError, while assigning to a list item is allowed.\n\nrange represents a sequence of integers, commonly used in loops. The stop\nvalue is excluded:\n\nnumbers = range(1, 6)\nprint(list(numbers))  # [1, 2, 3, 4, 5]\n\nE. Mapping: dict\n\ndict stores key-value pairs. Keys are unique; dictionaries are mutable and\npreserve insertion order:\n\nemployee = {\n    \"name\": \"Ilaaf\",\n    \"age\": 29,\n    \"company\": \"HTC\",\n    \"role\": \"Data Scientist\",\n}\nprint(employee[\"name\"])  # Ilaaf\nemployee[\"company\"] = \"Google\"\n\nDictionaries are useful for structured records and API data, for example:\n\ncustomer = {\n    \"customer_id\": 101,\n    \"purchase_amount\": 5000.0,\n    \"is_fraud\": False,\n}\n\nF. Set types\n\nset is a mutable, unordered collection of unique, hashable values. It removes\nduplicates and does not support positional indexing:\n\nnumbers = {10, 20, 30, 10, 20}\nprint(numbers)  # {10, 20, 30} (display order may vary)\n\nfrozenset is an immutable set; its elements cannot be added or removed:\n\nfixed_numbers = frozenset([10, 20, 30])\n\nG. Binary types\n\nBinary types represent byte data, useful when working with files, networking,\nand multimedia:\n\ndata = bytes([65, 66, 67])\nprint(data)  # b'ABC'\n\nbytes is immutable, bytearray is mutable, and memoryview provides access to\nbinary data without copying it.\n\nH. NoneType\n\nNone represents the absence of a value. Its type is NoneType:\n\nresult = None\nprint(result)       # None\nprint(type(result)) # <class 'NoneType'>\n\n3. List vs tuple vs set vs dictionary\n\nlist:       [value, ...]       ordered, mutable, allows duplicates\ntuple:      (value, ...)       ordered, immutable, allows duplicates\nset:        {value, ...}       unordered, mutable, unique elements\ndictionary: {key: value, ...}  insertion-ordered, mutable, unique keys\n\nRemember: list is a changeable sequence; tuple is a fixed sequence; set keeps\nunique elements; dictionary maps keys to values.\n\n4. Checking types dynamically\n\ntype() returns an object's type. isinstance() checks whether it has a given type:\n\nx = 100\nprint(type(x))              # <class 'int'>\nprint(isinstance(x, int))   # True\nprint(isinstance(x, str))   # False\n\n5. Practice\n\nFor these assignments, identify each value's type:\n\na = 100\nb = 10.5\nc = \"Python\"\nd = True\ne = [10, 20, 30]\nf = (10, 20, 30)\ng = {10, 20, 30}\nh = {\"name\": \"Ilaaf\"}\n\nWhat happens here?\n\nvalues = [10, 20, 30]\nvalues[0] = 100  # Works: lists are mutable\n\nfixed_values = (10, 20, 30)\nfixed_values[0] = 100  # Raises TypeError: tuples are immutable\n\n6. What to learn next\n\nAfter data types, study mutability, indexing and slicing, operators,\nconditions, loops, collection methods, list comprehensions, functions,\nobject-oriented programming, exception handling, and then libraries such as\nNumPy and Pandas for data science."
+  },
+  {
+    "prompt": "Teach me Python: what are the data types?",
+    "response": "Python Tutorial 1: Data Types in Python\n\nLet's learn Python from the fundamentals, gradually moving toward advanced topics\nsuch as machine learning, deep learning, and generative AI. The examples below use\npractical data-processing and data-science scenarios.\n\n1. What are data types?\n\nA data type describes the kind of value a variable refers to and the operations\nthat are appropriate for that value. Python determines types at runtime; you do\nnot normally declare a variable's type.\n\nname = \"Ilaaf\"\nage = 29\nsalary = 31000.50\nis_data_scientist = True\n\nHere, name is str, age is int, salary is float, and is_data_scientist is bool.\nUse type() to inspect a value:\n\nname = \"Ilaaf\"\nprint(type(name))  # <class 'str'>\n\n2. Built-in data types\n\nNumeric: int, float, complex\nText: str\nBoolean: bool\nSequences: list, tuple, range\nMapping: dict\nSets: set, frozenset\nBinary: bytes, bytearray, memoryview\nSpecial value: None, whose type is NoneType\n\nA. Numeric types\n\nint stores whole numbers, including negative numbers:\n\nage = 29\nnumber_of_employees = 500\ntemperature = -10\nprint(type(age))  # <class 'int'>\n\nfloat stores numbers with a fractional part. Data science uses floats for\nmeasurements, probabilities, model predictions, and statistical calculations:\n\nsalary = 31000.50\naccuracy = 0.957\nprint(type(salary))  # <class 'float'>\n\ncomplex stores a real and an imaginary component:\n\nx = 5 + 3j\nprint(x)        # (5+3j)\nprint(type(x))  # <class 'complex'>\nprint(x.real)   # 5.0\nprint(x.imag)   # 3.0\n\nB. Text: str\n\nstr represents text. Strings may use single quotes, double quotes, or triple\nquotes:\n\nname = \"Ilaaf\"\nrole = 'Data Scientist'\nmessage = \"\"\"Welcome to Python\"\"\"\nprint(type(name))  # <class 'str'>\n\nStrings are immutable: you cannot replace an individual character in place.\nFor example, name[0] = \"A\" raises TypeError. Create a new string instead:\n\nname = \"A\" + name[1:]\n\nC. Boolean: bool\n\nbool has two values, True and False. Booleans are often used in conditions:\n\naccuracy = 95\nif accuracy > 90:\n    print(\"Model performance is good\")\nelse:\n    print(\"Model needs improvement\")\n\nD. Sequence types\n\nSequences keep values in an order.\n\nlist is ordered and mutable (changeable); it allows duplicate values and can\ncontain values of different types:\n\nskills = [\"Python\", \"SQL\", \"Machine Learning\"]\nskills.append(\"Deep Learning\")\nprint(skills)\n\ntuple is ordered and immutable (not changeable):\n\ncoordinates = (10, 20, 30)\n\nBoth lists and tuples support indexing starting at zero. Assigning to\ncoordinates[0] raises TypeError, while assigning to a list item is allowed.\n\nrange represents a sequence of integers, commonly used in loops. The stop\nvalue is excluded:\n\nnumbers = range(1, 6)\nprint(list(numbers))  # [1, 2, 3, 4, 5]\n\nE. Mapping: dict\n\ndict stores key-value pairs. Keys are unique; dictionaries are mutable and\npreserve insertion order:\n\nemployee = {\n    \"name\": \"Ilaaf\",\n    \"age\": 29,\n    \"company\": \"HTC\",\n    \"role\": \"Data Scientist\",\n}\nprint(employee[\"name\"])  # Ilaaf\nemployee[\"company\"] = \"Google\"\n\nDictionaries are useful for structured records and API data, for example:\n\ncustomer = {\n    \"customer_id\": 101,\n    \"purchase_amount\": 5000.0,\n    \"is_fraud\": False,\n}\n\nF. Set types\n\nset is a mutable, unordered collection of unique, hashable values. It removes\nduplicates and does not support positional indexing:\n\nnumbers = {10, 20, 30, 10, 20}\nprint(numbers)  # {10, 20, 30} (display order may vary)\n\nfrozenset is an immutable set; its elements cannot be added or removed:\n\nfixed_numbers = frozenset([10, 20, 30])\n\nG. Binary types\n\nBinary types represent byte data, useful when working with files, networking,\nand multimedia:\n\ndata = bytes([65, 66, 67])\nprint(data)  # b'ABC'\n\nbytes is immutable, bytearray is mutable, and memoryview provides access to\nbinary data without copying it.\n\nH. NoneType\n\nNone represents the absence of a value. Its type is NoneType:\n\nresult = None\nprint(result)       # None\nprint(type(result)) # <class 'NoneType'>\n\n3. List vs tuple vs set vs dictionary\n\nlist:       [value, ...]       ordered, mutable, allows duplicates\ntuple:      (value, ...)       ordered, immutable, allows duplicates\nset:        {value, ...}       unordered, mutable, unique elements\ndictionary: {key: value, ...}  insertion-ordered, mutable, unique keys\n\nRemember: list is a changeable sequence; tuple is a fixed sequence; set keeps\nunique elements; dictionary maps keys to values.\n\n4. Checking types dynamically\n\ntype() returns an object's type. isinstance() checks whether it has a given type:\n\nx = 100\nprint(type(x))              # <class 'int'>\nprint(isinstance(x, int))   # True\nprint(isinstance(x, str))   # False\n\n5. Practice\n\nFor these assignments, identify each value's type:\n\na = 100\nb = 10.5\nc = \"Python\"\nd = True\ne = [10, 20, 30]\nf = (10, 20, 30)\ng = {10, 20, 30}\nh = {\"name\": \"Ilaaf\"}\n\nWhat happens here?\n\nvalues = [10, 20, 30]\nvalues[0] = 100  # Works: lists are mutable\n\nfixed_values = (10, 20, 30)\nfixed_values[0] = 100  # Raises TypeError: tuples are immutable\n\n6. What to learn next\n\nAfter data types, study mutability, indexing and slicing, operators,\nconditions, loops, collection methods, list comprehensions, functions,\nobject-oriented programming, exception handling, and then libraries such as\nNumPy and Pandas for data science."
+  },
+  {
+    "prompt": "Name common built-in Python collection types.",
+    "response": "Common Python collection types include lists, tuples, ranges, dictionaries, sets, and frozensets. Lists and tuples are sequence types, dictionaries store mappings, and sets store distinct elements."
+  },
+  {
+    "prompt": "What is the difference between a Python list and tuple?",
+    "response": "Both lists and tuples are sequence types. A list is mutable, so its elements can be changed after creation; a tuple is immutable, so its elements cannot be reassigned. Use a list for a changeable collection and a tuple for a fixed grouping of values."
+  },
+  {
+    "prompt": "What is a Python dictionary?",
+    "response": "A Python dictionary is a mapping that associates keys with values. It is useful when values should be looked up by a meaningful key rather than only by their position."
+  },
+  {
+    "prompt": "What is a data structure?",
+    "response": "A data structure is a way of organizing and storing data so a program can access and modify it. The choice of structure affects which operations are convenient and how efficiently they can be performed."
+  },
+  {
+    "prompt": "What is an algorithm?",
+    "response": "An algorithm is a finite, well-defined sequence of effective steps for solving a problem. It takes input, produces output, and its instructions must be definite and terminate."
+  },
+  {
+    "prompt": "What is the difference between an algorithm and a program?",
+    "response": "An algorithm is a language-independent plan for solving a problem. A program is an implementation of that plan in a programming language so a computer can execute it."
+  },
+  {
+    "prompt": "What does time complexity describe?",
+    "response": "Time complexity describes how the amount of computation required by an algorithm grows with input size. It is commonly expressed with asymptotic notation such as Big-O, rather than a particular machine's clock time."
+  },
+  {
+    "prompt": "Explain Big-O notation.",
+    "response": "Big-O notation gives an asymptotic upper bound on a function's growth. For example, saying an algorithm is O(n squared) means its running-time growth is bounded above by a constant multiple of n squared for sufficiently large n."
+  },
+  {
+    "prompt": "What is the difference between Big-O, Big-Omega, and Big-Theta?",
+    "response": "Big-O describes an asymptotic upper bound, Big-Omega describes a lower bound, and Big-Theta describes a tight bound: both an upper and a lower bound up to constant factors."
+  },
+  {
+    "prompt": "What is a database primary key?",
+    "response": "A primary key is one or more attributes that uniquely identify each row in a database table. Entity integrity requires each row to have a valid primary-key value."
+  },
+  {
+    "prompt": "What is a foreign key?",
+    "response": "A foreign key is an attribute or set of attributes in one table that references a key in another table. Referential integrity requires the reference to match an existing key, keeping related records consistent."
+  },
+  {
+    "prompt": "What is database normalization?",
+    "response": "Database normalization organizes relational tables to reduce unnecessary repetition of data and help avoid inconsistencies when records are inserted, updated, or deleted."
+  },
+  {
+    "prompt": "What is data science?",
+    "response": "Data science is a multidisciplinary process for extracting useful or actionable insights from data. It combines mathematics, statistics, programming, machine learning, and knowledge of the problem domain, and can work with structured as well as unstructured data."
+  },
+  {
+    "prompt": "What are the main stages of a data science workflow?",
+    "response": "A data science workflow commonly identifies a goal, collects and prepares data, explores and analyzes it, builds and evaluates a model when appropriate, and communicates or deploys the results. The process is iterative, so findings may lead back to earlier steps."
+  },
+  {
+    "prompt": "What is data cleaning?",
+    "response": "Data cleaning identifies and addresses issues such as missing, duplicated, inconsistent, or incorrectly formatted values so the data is more suitable for analysis."
+  },
+  {
+    "prompt": "What is supervised learning?",
+    "response": "Supervised learning trains a model using labeled examples, where the desired outcome is provided for each training case. The learned relationship can then be used to predict outcomes for new cases."
+  },
+  {
+    "prompt": "What is unsupervised learning?",
+    "response": "Unsupervised learning works with data that has no provided target labels. It seeks patterns or structure in the data; clustering is a common example."
+  },
+  {
+    "prompt": "How do supervised and unsupervised learning differ?",
+    "response": "Supervised learning uses labeled examples with known targets to learn predictions. Unsupervised learning has no target labels and instead looks for structure or patterns, such as groups, in the available data."
+  },
+  {
+    "prompt": "What is the difference between classification and regression?",
+    "response": "Classification predicts a category or class, such as pass or fail. Regression predicts a numeric value, such as a measurement or forecast."
+  },
+  {
+    "prompt": "What is clustering?",
+    "response": "Clustering is an unsupervised learning task that groups data points based on similarity, without using predefined class labels."
+  },
+  {
+    "prompt": "What is overfitting?",
+    "response": "Overfitting occurs when a model fits the training examples too closely, including their noise, and consequently performs worse on new, unseen data."
+  },
+  {
+    "prompt": "Why do we split data into training and validation sets?",
+    "response": "The training set is used to fit a model. A separate validation set helps estimate how well it generalizes and compare choices such as model settings without evaluating only on the data it learned from."
+  },
+  {
+    "prompt": "What is the K-nearest neighbors algorithm?",
+    "response": "K-nearest neighbors (KNN) predicts for a new example using the labels or values of its K closest training examples. Feature scales matter because large-valued features can dominate distance calculations, so scaling may be needed."
+  },
+  {
+    "prompt": "Why is feature normalization useful in KNN?",
+    "response": "KNN compares examples using distances. If features have very different scales, a large-scale feature can dominate the distance and hide the influence of smaller-scale features. Normalization brings features to comparable scales."
+  },
+  {
+    "prompt": "What is artificial intelligence?",
+    "response": "Artificial intelligence (AI) is the field of building computer systems that perform tasks associated with intelligent behavior, such as reasoning, perception, language understanding, or decision-making."
+  },
+  {
+    "prompt": "What is machine learning?",
+    "response": "Machine learning is an approach in which a computer model learns patterns from data to make predictions or decisions, rather than being given hand-written rules for every case."
+  },
+  {
+    "prompt": "How are artificial intelligence and machine learning related?",
+    "response": "Machine learning is a set of methods for learning from data and is commonly used to build AI systems. AI is the broader goal or field; not every AI approach has to use machine learning."
+  },
+  {
+    "prompt": "What is data visualization?",
+    "response": "Data visualization represents data graphically so people can inspect patterns, comparisons, and relationships. Python libraries used for visualization include Matplotlib and Seaborn."
+  },
+  {
+    "prompt": "What is a relational database?",
+    "response": "A relational database organizes data into tables made of rows and columns. Keys can identify rows and express relationships between tables."
+  },
+  {
+    "prompt": "What is the difference between a stack and a queue?",
+    "response": "A stack removes the most recently added item first (last in, first out). A queue removes the item that has been waiting longest (first in, first out)."
+  },
+  {
+    "prompt": "What is object-oriented programming?",
+    "response": "Object-oriented programming organizes software around objects that combine state and behavior. Classes define the structure and behavior from which objects are created."
+  },
+  {
+    "prompt": "What is cloud computing?",
+    "response": "Cloud computing provides computing resources, such as servers, storage, or software, over a network on demand instead of requiring users to manage all of the underlying infrastructure themselves."
+  },
+  {
+    "prompt": "What is software engineering?",
+    "response": "Software engineering applies systematic methods to the specification, design, development, testing, deployment, and maintenance of software."
+  },
+  {
+    "prompt": "Hi",
+    "response": "Hello! What would you like to study?"
+  },
+  {
+    "prompt": "Hello",
+    "response": "Hello! What would you like to study?"
+  },
+  {
+    "prompt": "How are you doing?",
+    "response": "I'm doing well, thanks for asking! I'm here and ready to help with your studies. How are you doing?"
+  },
+  {
+    "prompt": "Who are you?",
+    "response": "I am GYANTRA, your private AI learning companion. I can help explain topics from your local MCA and MSc course materials."
+  },
+  {
+    "prompt": "Hey",
+    "response": "Hi! What would you like to study or work on today?"
+  },
+  {
+    "prompt": "Good morning",
+    "response": "Good morning! What would you like to learn about today?"
+  },
+  {
+    "prompt": "Good afternoon",
+    "response": "Good afternoon! What can I help you study today?"
+  },
+  {
+    "prompt": "Good evening",
+    "response": "Good evening! What would you like to work on?"
+  },
+  {
+    "prompt": "I am doing great",
+    "response": "Glad to hear it! What would you like to study or work on today?"
+  },
+  {
+    "prompt": "I am doing well",
+    "response": "That's good to hear! What can I help you with today?"
+  },
+  {
+    "prompt": "I am fine",
+    "response": "Good to hear! What would you like to study today?"
+  },
+  {
+    "prompt": "Not really, I am having a hard day",
+    "response": "I'm sorry it's been a hard day. We can take things one step at a time. Would you like to talk about a study topic or try a small task?"
+  },
+  {
+    "prompt": "Thank you",
+    "response": "You're welcome! Let me know if you'd like to explore anything else."
+  },
+  {
+    "prompt": "Thanks",
+    "response": "You're welcome! What else can I help you with?"
+  },
+  {
+    "prompt": "Thanks for your help",
+    "response": "You're very welcome. I'm glad I could help!"
+  },
+  {
+    "prompt": "That was helpful",
+    "response": "I'm glad it helped! Would you like an example or to explore another topic?"
+  },
+  {
+    "prompt": "What can you do?",
+    "response": "I can help explain study topics, give examples, and work through questions step by step. Tell me the subject or question you'd like to start with."
+  },
+  {
+    "prompt": "Can you help me?",
+    "response": "Of course! Tell me what you're working on, and we'll take it step by step."
+  },
+  {
+    "prompt": "Can you explain this in simple words?",
+    "response": "Sure. Tell me the topic or paste the part you'd like explained, and I'll use simpler language."
+  },
+  {
+    "prompt": "Can you give me an example?",
+    "response": "Sure—what topic would you like an example for?"
+  },
+  {
+    "prompt": "I don't understand",
+    "response": "That's okay. Which part or topic is confusing? I'll try a different explanation and break it into smaller steps."
+  },
+  {
+    "prompt": "Please repeat that",
+    "response": "Of course. Which part would you like me to repeat?"
+  },
+  {
+    "prompt": "Can you quiz me?",
+    "response": "Sure! What subject or topic should I quiz you on?"
+  },
+  {
+    "prompt": "Let's study",
+    "response": "Sounds good! What subject or topic would you like to study?"
+  },
+  {
+    "prompt": "I'm confused",
+    "response": "No problem—we can slow down. Tell me which topic or step is confusing, and I'll explain it another way."
+  },
+  {
+    "prompt": "Sorry",
+    "response": "No need to apologize. What would you like help with?"
+  },
+  {
+    "prompt": "I made a mistake",
+    "response": "That's all right; mistakes are part of learning. What would you like to check?"
+  },
+  {
+    "prompt": "That answer seems wrong",
+    "response": "Thanks for pointing that out. Tell me which part seems wrong or share the relevant course passage, and I'll review it carefully."
+  },
+  {
+    "prompt": "Can you help with my homework?",
+    "response": "Yes. Share the question and what you've tried so far. I can explain the concepts and help you work toward a solution."
+  },
+  {
+    "prompt": "I don't know what to study",
+    "response": "We can choose a starting point together. What course or subject are you taking, and what topics have you covered recently?"
+  },
+  {
+    "prompt": "Goodbye",
+    "response": "Goodbye! Good luck with your studies. Come back whenever you'd like to continue."
+  },
+  {
+    "prompt": "Bye",
+    "response": "Bye! Take care, and good luck with your studies."
+  },
+  {
+    "prompt": "See you later",
+    "response": "See you later! I'll be here when you're ready to study again."
+  },
+  {
+    "prompt": "Good night",
+    "response": "Good night! Rest well, and good luck with your studies tomorrow."
+  },
+  {
+    "prompt": "Are you a real person?",
+    "response": "I'm an AI assistant, not a person. I can still help explain topics and practice study questions."
+  },
+  {
+    "prompt": "Where did you get that answer?",
+    "response": "I generate answers from my training and the information available in this chat. I don't currently search your course PDFs while answering, so please check important details against your course material."
+  },
+  {
+    "prompt": "Can you summarize something for me?",
+    "response": "Yes. Paste the text or tell me the topic you'd like summarized."
+  },
+  {
+    "prompt": "Can you explain it step by step?",
+    "response": "Absolutely. Tell me the topic or share the problem, and I'll break it into steps."
+  }
+]

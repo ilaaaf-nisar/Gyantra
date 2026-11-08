@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title>GYANTRA – Your Private AI Learning Companion</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #080d1a;
+      color: #e2e8f0;
+      font-synthesis: none;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      height: 100vh;
+      height: 100dvh;
+      min-height: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 15% 0%, #171b43 0, transparent 38%), #080d1a;
+    }
+
+    button, textarea, input { font: inherit; }
+    button { color: inherit; }
+
+    .topbar {
+      min-height: 68px;
+      padding: 10px max(20px, calc((100vw - 900px) / 2));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid #20283a;
+      background: rgb(8 13 26 / 92%);
+    }
+
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #5554a9;
+      border-radius: 14px;
+      background: #151632;
+      color: #a5b4fc;
+      font-size: 22px;
+    }
+    .brand h1 { margin: 0; font-size: 17px; letter-spacing: .01em; }
+    .brand p { margin: 3px 0 0; color: #94a3b8; font-size: 12px; }
+    .local-badge {
+      padding: 7px 10px;
+      border: 1px solid #263348;
+      border-radius: 12px;
+      color: #cbd5e1;
+      background: #101827;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    main {
+      width: min(100%, 900px);
+      min-height: 0;
+      flex: 1;
+      margin: 0 auto;
+      padding: 0 22px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .messages {
+      min-height: 0;
+      flex: 1;
+      overflow-y: auto;
+      padding: 30px 4px 24px;
+      scroll-behavior: smooth;
+    }
+
+    .welcome {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 8px;
+      text-align: center;
+    }
+    .welcome-mark {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      border: 1px solid #33365e;
+      border-radius: 19px;
+      background: #151632;
+      color: #a5b4fc;
+      font-size: 28px;
+    }
+    .welcome h2 { margin: 0 0 9px; font-size: clamp(21px, 4vw, 28px); }
+    .welcome p { max-width: 530px; margin: 0; color: #94a3b8; font-size: 14px; line-height: 1.65; }
+    .suggestions { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; margin-top: 23px; }
+    .suggestion {
+      padding: 9px 12px;
+      border: 1px solid #293349;
+      border-radius: 12px;
+      background: #101827;
+      color: #cbd5e1;
+      cursor: pointer;
+      font-size: 12px;
+      text-align: left;
+    }
+    .suggestion:hover { border-color: #6966bd; background: #191b38; }
+
+    .turn { margin: 0 auto 25px; display: flex; gap: 12px; }
+    .turn.user { justify-content: flex-end; }
+    .avatar {
+      width: 32px;
+      height: 32px;
+      flex: 0 0 32px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #383a70;
+      border-radius: 11px;
+      background: #171832;
+      color: #a5b4fc;
+      font-size: 17px;
+    }
+    .bubble {
+      max-width: min(82%, 720px);
+      overflow-wrap: anywhere;
+      white-space: pre-wrap;
+      line-height: 1.75;
+      font-size: 14px;
+    }
+    .user .bubble {
+      padding: 11px 15px;
+      border: 1px solid #30384b;
+      border-radius: 17px 17px 5px 17px;
+      background: #1a2333;
+    }
+    .assistant .bubble { padding: 2px 0; }
+    .assistant .bubble.error { color: #fda4af; }
+
+    .composer-area {
+      flex: 0 0 auto;
+      padding: 12px 0 max(12px, env(safe-area-inset-bottom));
+      border-top: 1px solid #20283a;
+      background: rgb(8 13 26 / 96%);
+    }
+    details.settings { margin-bottom: 11px; }
+    details.settings summary {
+      width: fit-content;
+      color: #94a3b8;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    details.settings summary:hover { color: #e2e8f0; }
+    .settings-panel {
+      margin-top: 10px;
+      padding: 13px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      border: 1px solid #263148;
+      border-radius: 14px;
+      background: #0e1625;
+    }
+    .setting-label { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 6px; color: #cbd5e1; font-size: 11px; }
+    .setting-label output { color: #a5b4fc; font-family: Consolas, monospace; }
+    input[type="range"] { width: 100%; accent-color: #7772e8; }
+    .composer {
+      padding: 8px 9px 8px 14px;
+      border: 1px solid #303b50;
+      border-radius: 18px;
+      background: #101827;
+      box-shadow: 0 10px 35px rgb(0 0 0 / 18%);
+    }
+    .composer:focus-within { border-color: #6663bd; }
+    textarea {
+      display: block;
+      width: 100%;
+      max-height: 150px;
+      min-height: 40px;
+      padding: 9px 2px;
+      resize: none;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: #f1f5f9;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    textarea::placeholder { color: #718096; }
+    .composer-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .hint { color: #778398; font-size: 10px; }
+    .actions { display: flex; align-items: center; gap: 10px; }
+    .send {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 12px;
+      background: #625bd6;
+      color: white;
+      cursor: pointer;
+      font-size: 20px;
+    }
+    .send:hover:not(:disabled) { background: #7772e8; }
+    .send:disabled { cursor: wait; opacity: .55; }
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 9px 3px 0;
+      color: #778398;
+      font-size: 10px;
+    }
+    .text-button {
+      padding: 5px 7px;
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
+      color: #94a3b8;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .text-button:hover { background: #182133; color: white; }
+    .toast {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 2;
+      max-width: min(420px, calc(100vw - 36px));
+      padding: 11px 14px;
+      border: 1px solid #3a455b;
+      border-radius: 12px;
+      background: #121b2b;
+      box-shadow: 0 10px 35px #0008;
+      color: #e2e8f0;
+      font-size: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .topbar { min-height: 60px; padding: 8px 13px; }
+      .brand-mark { width: 37px; height: 37px; }
+      .brand h1 { font-size: 15px; }
+      .brand p { font-size: 11px; }
+      .local-badge { padding: 6px 8px; font-size: 10px; }
+      main { padding: 0 13px; }
+      .messages { padding-top: 18px; }
+      .settings-panel { grid-template-columns: 1fr; gap: 10px; }
+      .bubble { max-width: 88%; font-size: 13px; }
+      .hint { max-width: 65%; line-height: 1.5; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">✦</div>
+      <div>
+        <h1>GYANTRA</h1>
+        <p>Your Private AI Learning Companion</p>
+      </div>
+    </div>
+    <div class="local-badge">● Local model</div>
+  </header>
+
+  <main>
+    <section id="chatMessages" class="messages" aria-live="polite">
+      <div id="welcome" class="welcome">
+        <div class="welcome-mark" aria-hidden="true">✦</div>
+        <h2>What would you like to learn?</h2>
+        <p>Ask GYANTRA about your local MCA and MSc course materials. Your messages are sent to the model running on this computer.</p>
+        <div class="suggestions">
+          <button class="suggestion" type="button">Explain database normalization</button>
+          <button class="suggestion" type="button">What is data science?</button>
+          <button class="suggestion" type="button">Explain data structures using Python</button>
+          <button class="suggestion" type="button">What are the data types in Python?</button>
+          <button class="suggestion" type="button">Explain artificial intelligence and machine learning</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="composer-area" aria-label="Message composer">
+      <details class="settings">
+        <summary>Response settings</summary>
+        <div class="settings-panel">
+          <label>
+            <span class="setting-label">Temperature <output id="temperatureValue">0.80</output></span>
+            <input id="temperature" type="range" min="0.1" max="1.5" step="0.05" value="0.8">
+          </label>
+          <label>
+            <span class="setting-label">Max output tokens <output id="tokensValue">500</output></span>
+            <input id="maxTokens" type="range" min="20" max="3000" step="5" value="500">
+          </label>
+          <label>
+            <span class="setting-label">Top-k <output id="topKValue">40</output></span>
+            <input id="topK" type="range" min="1" max="100" step="1" value="40">
+          </label>
+        </div>
+      </details>
+
+      <div class="composer">
+        <textarea id="promptInput" rows="1" aria-label="Message GYANTRA" placeholder="Message GYANTRA..."></textarea>
+        <div class="composer-actions">
+          <span class="hint">Enter to send · Shift+Enter for a new line</span>
+          <div class="actions">
+            <button id="copyButton" class="text-button" type="button" title="Copy latest answer">Copy</button>
+            <button id="clearButton" class="text-button" type="button" title="Start a new conversation">New chat</button>
+            <button id="sendButton" class="send" type="button" aria-label="Send message" title="Send message">↑</button>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <span>MCA and MSc materials stored locally</span>
+        <span id="status">Ready</span>
+      </div>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status" hidden></div>
+
+  <script>
+    const API_URL = 'http://127.0.0.1:8000/generate';
+    const chatMessages = document.getElementById('chatMessages');
+    const welcome = document.getElementById('welcome');
+    const promptInput = document.getElementById('promptInput');
+    const sendButton = document.getElementById('sendButton');
+    const status = document.getElementById('status');
+    const toast = document.getElementById('toast');
+    const conversation = [];
+    let latestReply = '';
+    let activeRequest = null;
+    let toastTimer = null;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.hidden = false;
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => { toast.hidden = true; }, 3500);
+    }
+
+    function scrollToLatest() {
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function addMessage(role, text, isError = false) {
+      const row = document.createElement('article');
+      row.className = `turn ${role}`;
+
+      if (role === 'assistant') {
+        const avatar = document.createElement('div');
+        avatar.className = 'avatar';
+        avatar.setAttribute('aria-hidden', 'true');
+        avatar.textContent = '✦';
+        row.appendChild(avatar);
+      }
+
+      const bubble = document.createElement('div');
+      bubble.className = `bubble${isError ? ' error' : ''}`;
+      bubble.textContent = text;
+      row.appendChild(bubble);
+      chatMessages.appendChild(row);
+      scrollToLatest();
+      return bubble;
+    }
+
+    function setBusy(busy) {
+      sendButton.disabled = busy;
+      sendButton.textContent = busy ? '…' : '↑';
+      status.textContent = busy ? 'Thinking…' : 'Ready';
+    }
+
+    async function sendMessage() {
+      const prompt = promptInput.value.trim();
+      if (!prompt || activeRequest) return;
+
+      welcome.hidden = true;
+      addMessage('user', prompt);
+      promptInput.value = '';
+      promptInput.style.height = 'auto';
+      const replyBubble = addMessage('assistant', 'Thinking…');
+      const requestController = new AbortController();
+      activeRequest = requestController;
+      setBusy(true);
+
+      const requestBody = {
+        prompt,
+        history: conversation.slice(-4),
+        max_new_tokens: Number(document.getElementById('maxTokens').value),
+        temperature: Number(document.getElementById('temperature').value),
+        top_k: Number(document.getElementById('topK').value),
+      };
+
+      try {
+        const response = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(requestBody),
+          signal: requestController.signal,
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || `Server returned HTTP ${response.status}`);
+        if (typeof result.completion !== 'string') {
+          throw new Error('The local model returned an invalid response.');
+        }
+
+        latestReply = result.completion;
+        replyBubble.textContent = latestReply || '(The model returned an empty reply.)';
+        conversation.push({ user: prompt, assistant: latestReply });
+        status.textContent = `${result.tokens ?? '—'} tokens · ${result.source === 'reviewed_example' ? 'reviewed answer' : 'model answer'}`;
+      } catch (error) {
+        if (error.name === 'AbortError') {
+          replyBubble.textContent = 'Response cancelled.';
+        } else {
+          replyBubble.classList.add('error');
+          replyBubble.textContent = `Unable to reach GYANTRA's local model server. Make sure the app is running.\n\n${error.message}`;
+          showToast('Could not get a response from the local model.');
+        }
+      } finally {
+        if (activeRequest === requestController) {
+          activeRequest = null;
+          setBusy(false);
+        }
+        scrollToLatest();
+      }
+    }
+
+    promptInput.addEventListener('input', () => {
+      promptInput.style.height = 'auto';
+      promptInput.style.height = `${Math.min(promptInput.scrollHeight, 150)}px`;
+    });
+
+    promptInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        sendMessage();
+      }
+    });
+    sendButton.addEventListener('click', sendMessage);
+
+    document.querySelectorAll('.suggestion').forEach((button) => {
+      button.addEventListener('click', () => {
+        promptInput.value = button.textContent.trim();
+        promptInput.focus();
+        promptInput.dispatchEvent(new Event('input'));
+      });
+    });
+
+    document.getElementById('temperature').addEventListener('input', (event) => {
+      document.getElementById('temperatureValue').value = Number(event.target.value).toFixed(2);
+    });
+    document.getElementById('maxTokens').addEventListener('input', (event) => {
+      document.getElementById('tokensValue').value = event.target.value;
+    });
+    document.getElementById('topK').addEventListener('input', (event) => {
+      document.getElementById('topKValue').value = event.target.value;
+    });
+
+    document.getElementById('clearButton').addEventListener('click', () => {
+      if (activeRequest) activeRequest.abort();
+      activeRequest = null;
+      conversation.length = 0;
+      latestReply = '';
+      chatMessages.querySelectorAll('.turn').forEach((turn) => turn.remove());
+      welcome.hidden = false;
+      promptInput.value = '';
+      promptInput.style.height = 'auto';
+      status.textContent = 'Ready';
+      setBusy(false);
+      promptInput.focus();
+    });
+
+    document.getElementById('copyButton').addEventListener('click', async () => {
+      if (!latestReply) {
+        showToast('There is no answer to copy yet.');
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(latestReply);
+      } catch {
+        const copyBuffer = document.createElement('textarea');
+        copyBuffer.value = latestReply;
+        document.body.appendChild(copyBuffer);
+        copyBuffer.select();
+        document.execCommand('copy');
+        copyBuffer.remove();
+      }
+      showToast('Latest answer copied.');
+    });
+  </script>
+</body>
+</html>
